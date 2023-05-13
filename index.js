@@ -15,7 +15,6 @@ app.use((req, _res, next) => {
   next();
 });
 
-app.use(express.static('build'));
 app.use(router);
 
 app.listen(
