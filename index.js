@@ -4,7 +4,9 @@ const cors = require('cors');
 const express = require('express');
 const router = require('./routes');
 const config = require('./config');
+const { STORAGE_DIR } = require('./consts');
 
+console.log(STORAGE_DIR);
 const app = express();
 
 app.use(cors(config.cors));
