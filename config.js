@@ -6,7 +6,7 @@ const config = {
     ]
   },
   server: {
-    port: 8888
+    port: process.env.SERVER_PORT || 8888
   }
 };
 
