@@ -4,9 +4,12 @@ const cors = require('cors');
 const express = require('express');
 const router = require('./routes');
 const config = require('./config');
-const { STORAGE_DIR } = require('./consts');
+const db = require('./database');
 
-console.log(STORAGE_DIR);
+db.authenticate()
+  .then(() => console.log('db connected'))
+  .catch((err) => console.log(`error: ${err.message}`));
+
 const app = express();
 
 app.use(cors(config.cors));

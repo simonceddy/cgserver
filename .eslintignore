@@ -1,0 +1,5 @@
+database/migrations
+database/models
+database/seeders
+client
+admin
