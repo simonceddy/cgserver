@@ -15,15 +15,31 @@ module.exports = {
    await queryInterface.bulkInsert('Pages', [
     {
       title: 'Home',
-      body: 'Homepage content'
+      slug: 'home',
+      body: 'Homepage content',
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
     {
       title: 'Contact',
-      body: 'Contact form'
+      slug: 'contact',
+      body: 'Contact form',
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
     {
       title: 'About',
-      body: 'About page'
+      slug: 'about',
+      body: 'About page',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      title: 'Links',
+      slug: 'links',
+      body: 'List of links',
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
    ]);
   },

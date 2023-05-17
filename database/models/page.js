@@ -15,10 +15,12 @@ module.exports = (sequelize, DataTypes) => {
   }
   Page.init({
     title: DataTypes.STRING,
-    body: DataTypes.TEXT
+    slug: DataTypes.STRING,
+    body: DataTypes.TEXT,
   }, {
     sequelize,
     modelName: 'Page',
+    timestamps: true,
   });
   return Page;
 };

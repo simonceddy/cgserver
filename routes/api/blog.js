@@ -1,22 +1,22 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const express = require('express');
 const {
-  createDocument, deleteDocument, updateDocument, getDocument
+  createDocument, deleteDocument, updateDocument,
 } = require('../../controllers');
+const { BlogPost } = require('../../database/models');
 
 const blogRouter = express.Router();
 
-blogRouter.get('/', (_req, res) => {
-  res.json([
-    'blog1',
-    'blog2',
-    'blog3',
-  ]);
+blogRouter.get('/', async (_req, res) => {
+  const posts = await BlogPost.findAll();
+  res.json(posts);
 });
 
 blogRouter.get('/:slug', async (req, res) => {
-  await getDocument('blog', req.params.slug);
-  res.json(`Blog post ${req.params.slug}`);
+  const post = await BlogPost.findOne({ where: { slug: req.params.slug } });
+  if (post === null) {
+    res.status(404).json({ message: 'Not Found' });
+  } else res.json(post);
 });
 
 blogRouter.post('/create', async (req, res) => {

@@ -15,11 +15,13 @@ module.exports = (sequelize, DataTypes) => {
   }
   BlogPost.init({
     title: DataTypes.STRING,
+    slug: DataTypes.STRING,
     date: DataTypes.DATE,
     body: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'BlogPost',
+    timestamps: true,
   });
   return BlogPost;
 };

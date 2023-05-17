@@ -12,6 +12,10 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
+      slug: {
+        type: Sequelize.STRING,
+        unique: true
+      },
       date: {
         type: Sequelize.DATE
       },

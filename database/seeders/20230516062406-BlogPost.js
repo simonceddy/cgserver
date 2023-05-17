@@ -17,6 +17,7 @@ module.exports = {
     [
       {
         title: 'Post Uno',
+        slug: 'post-uno',
         date: new Date(),
         body: 'Hello world',
         createdAt: new Date(),
@@ -24,6 +25,7 @@ module.exports = {
       },
       {
         title: 'Post Duo',
+        slug: 'post-duo',
         date: new Date(),
         body: 'Hello world again',
         createdAt: new Date(),
@@ -32,6 +34,7 @@ module.exports = {
       },
       {
         title: 'Post Trio',
+        slug: 'post-trio',
         date: new Date(),
         body: 'Hello world once more',
         createdAt: new Date(),

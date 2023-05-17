@@ -1,22 +1,23 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const express = require('express');
 const {
-  getDocument, createDocument, updateDocument, deleteDocument
+  createDocument, updateDocument, deleteDocument
 } = require('../../controllers');
+const { Page } = require('../../database/models');
 
 const pageRouter = express.Router();
 
-pageRouter.get('/', (_req, res) => {
-  res.json([
-    'page1',
-    'page2',
-    'page3',
-  ]);
+pageRouter.get('/', async (_req, res) => {
+  const pages = await Page.findAll();
+  res.json(pages);
 });
 
 pageRouter.get('/:slug', async (req, res) => {
-  await getDocument('pages', req.params.slug);
-  res.json(`page ${req.params.slug}`);
+  const page = await Page.findOne({ where: { slug: req.params.slug } });
+  // console.log(page);
+  if (page === null) {
+    res.status(404).json({ message: 'Not Found' });
+  } else res.json(page);
 });
 
 pageRouter.post('/create', async (req, res) => {
