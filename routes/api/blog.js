@@ -1,8 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const express = require('express');
-const {
-  createDocument, deleteDocument, updateDocument,
-} = require('../../controllers');
+const { kebabCase } = require('lodash');
 const { BlogPost } = require('../../database/models');
 
 const blogRouter = express.Router();
@@ -10,6 +8,13 @@ const blogRouter = express.Router();
 blogRouter.get('/', async (_req, res) => {
   const posts = await BlogPost.findAll();
   res.json(posts);
+});
+
+blogRouter.get('/id/:id', async (req, res) => {
+  const post = await BlogPost.findOne({ where: { id: req.params.id } });
+  if (post === null) {
+    res.status(404).json({ message: 'Not Found' });
+  } else res.json(post);
 });
 
 blogRouter.get('/:slug', async (req, res) => {
@@ -20,18 +25,38 @@ blogRouter.get('/:slug', async (req, res) => {
 });
 
 blogRouter.post('/create', async (req, res) => {
-  await createDocument('blog', req.body);
-  res.json('create a blog post');
+  // TODO validate body
+  if (!req.body.title || req.body.title.length === 0) {
+    return res.json({
+      message: 'Title is required.',
+      success: false
+    });
+  }
+  const post = await BlogPost.create({
+    title: req.body.title,
+    body: req.body.body,
+    date: req.body.date || new Date(),
+    slug: kebabCase(req.body.title.trim())
+  });
+  return res.json({ post, success: true });
 });
 
 blogRouter.put('/update/:id', async (req, res) => {
-  await updateDocument('blog', req.params.id, req.body);
-  res.json(`delete blog post ${req.params.id}`);
+  // TODO update slug if title is updated
+  // TODO validate body
+  const result = await BlogPost.update({
+    ...req.body
+  }, { where: { id: req.params.id } });
+  if (!result) {
+    res.json({ success: false, message: 'an error occurred' });
+  } else res.json({ success: true, result });
 });
 
 blogRouter.delete('/delete/:id', async (req, res) => {
-  await deleteDocument('blog', req.params.id);
-  res.json(`delete blog post ${req.params.id}`);
+  const result = await BlogPost.destroy({ where: { id: req.params.id } });
+  if (!result) {
+    res.json({ success: false, message: 'an error occurred' });
+  } else res.json({ success: true, result });
 });
 
 module.exports = blogRouter;
