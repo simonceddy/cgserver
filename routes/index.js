@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const express = require('express');
 const apiRouter = require('./api');
 const mediaRouter = require('./media');

@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const { ExtractJwt, Strategy: JWTStrategy } = require('passport-jwt');
 const jwt = require('jsonwebtoken');
 const { auth } = require('../config');

@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const express = require('express');
 const { kebabCase } = require('lodash');
 const { BlogPost } = require('../../database/models');

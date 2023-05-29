@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 require('dotenv').config();
 const bodyParser = require('body-parser');
 const cors = require('cors');
