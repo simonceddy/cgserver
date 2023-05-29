@@ -6,7 +6,9 @@ const express = require('express');
 const router = require('./routes');
 const config = require('./config');
 const db = require('./database');
+require('./auth');
 
+// TODO remove from prod
 db.authenticate()
   .then(() => console.log('db connected'))
   .catch((err) => console.log(`error: ${err.message}`));

@@ -1,7 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { ExtractJwt, Strategy: JWTStrategy } = require('passport-jwt');
+const jwt = require('jsonwebtoken');
+const { auth } = require('../config');
 // const passport = require('passport');
 
+const token = jwt.sign({ here: 'there' }, auth.jwt.secret);
+
+console.log(jwt.decode(token));
 // TODO actual User
 const User = {
   findOne(_params, callback = null) {
@@ -18,7 +23,7 @@ function initStrategy(passport) {
 
   // TODO
   opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-  opts.secretOrKey = 'secret';
+  opts.secretOrKey = auth.jwt.secret;
   opts.issuer = 'cool.thing.com';
   opts.audience = 'localhost';
 

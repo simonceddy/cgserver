@@ -7,6 +7,11 @@ const config = {
   },
   server: {
     port: process.env.SERVER_PORT || 8888
+  },
+  auth: {
+    jwt: {
+      secret: process.env.JWT_SECRET || 'verysecure'
+    }
   }
 };
 
