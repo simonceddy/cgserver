@@ -6,10 +6,15 @@ const { Page } = require('../../database/models');
  * Page Router
  * @description
  * GET - / - get all pages
+ *
  * GET - /id/:id - get page by id
+ *
  * GET - /:slug - get page by slug
+ *
  * POST - /create - create a page
+ *
  * PUT - /update/:id - update a page by id
+ *
  * DELETE - /delete/:id - delete page by id
  */
 const pageRouter = express.Router();

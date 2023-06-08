@@ -6,10 +6,15 @@ const { BlogPost } = require('../../database/models');
  * Blog Router
  * @description
  * GET - / - get all blog posts
+ *
  * GET - /id/:id - get blog post by id
+ *
  * GET - /:slug - get blog post by slug
+ *
  * POST - /create - create a blog post
+ *
  * PUT - /update/:id - update a blog post by id
+ *
  * DELETE - /delete/:id - delete blog post by id
  */
 const blogRouter = express.Router();
