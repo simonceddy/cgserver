@@ -1,7 +1,12 @@
+const { dbLogger } = require('../logger');
+
 module.exports = {
   development: {
     dialect: 'sqlite',
-    storage: 'storage/database.sqlite'
+    storage: 'storage/database.sqlite',
+    logging: (e) => {
+      dbLogger.log('info', e);
+    },
   },
   test: {
     username: 'root',

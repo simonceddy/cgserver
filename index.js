@@ -6,6 +6,7 @@ const fileUpload = require('express-fileupload');
 const router = require('./routes');
 const config = require('./config');
 const db = require('./database');
+const { serverLogger } = require('./logger');
 require('./auth');
 
 // TODO remove from prod
@@ -23,6 +24,8 @@ app.use((req, _res, next) => {
   console.log(req.url);
   next();
 });
+
+app.use(serverLogger);
 
 app.use(router);
 
